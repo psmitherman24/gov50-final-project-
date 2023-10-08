@@ -11,4 +11,4 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to mass incarceration
+I am interested in exploring data related to mass incarceration.
