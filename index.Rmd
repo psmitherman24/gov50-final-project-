@@ -11,4 +11,21 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to mass incarceration.
+I am interested in exploring data related to civil wars.
+
+```{r}
+library(tidyverse)
+library(dplyr)
+
+civilwar <- read_csv("~/Downloads/civilwar.csv")
+
+civilwar
+
+Research Thoughts
+
+
+How much do former british and french colonies have civil wars . I am using the civil war data set.
+If we can deduce that colonies are more unstable, have worse economies or less functional governments it may follow that they are susceptible to civil wars.
+Some of the variables that can be used are the GDP ( "gdp/pop based on pwt5.6, wdi2001,cow energy data ") as well as polity score which measures index of democratization. The outcome variable would be war and onset to see if and when a civil war broke out in those nations. If the data displayed that former colonies with lower the democratization and gdp had more civil wars than that would give credence to my theory however data that shows that either colonies don't have more wars or if they do they don't have lower democratization and gdp than it wouldn't disprove but I would need more data around other facets that can be attributed to a history of colonization.
+```
+
