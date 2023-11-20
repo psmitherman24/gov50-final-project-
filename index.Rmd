@@ -11,7 +11,7 @@ output:
 
 ## Project thoughts
 
-I am interested in exploring data related to civil wars.
+I am interested in exploring data related to Civil Wars.
 
 ```{r}
 library(tidyverse)
@@ -24,6 +24,11 @@ civilwar
 
 ```
 Research Thoughts
+-GDP - Y variable
+
+colonized- 0/1 ur explanatory variable your X
+
+LM function/ give you regression table 
 
 How much do former british and french colonies have civil wars . I am using the civil war data set.
 If we can deduce that colonies are more unstable, have worse economies or less functional governments it may follow that they are susceptible to civil wars.

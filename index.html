@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1518,8 +1518,45 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h2 id="project-thoughts">Project thoughts</h2>
-<p>I am interested in exploring data related to mass incarceration</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>I am interested in exploring data related to Civil Wars.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>civilwar</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"~/Downloads/civilwar.csv"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>civilwar</span></span></code></pre>
+</div>
+<pre><code># A tibble: 6,610 × 77
+   ccode country cname cmark  year   war  warl onset    pop  lpop
+   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+ 1     2 USA     USA       1  1945     0     0     0 140969  11.9
+ 2     2 USA     USA       0  1946     0     0     0 141936  11.9
+ 3     2 USA     USA       0  1947     0     0     0 142713  11.9
+ 4     2 USA     USA       0  1948     0     0     0 145326  11.9
+ 5     2 USA     USA       0  1949     0     0     0 147987  11.9
+ 6     2 USA     USA       0  1950     0     0     0 152273  11.9
+ 7     2 USA     USA       0  1951     0     0     0 155000  12.0
+ 8     2 USA     USA       0  1952     0     0     0 157727  12.0
+ 9     2 USA     USA       0  1953     0     0     0 160475  12.0
+10     2 USA     USA       0  1954     0     0     0 163202  12.0
+# ℹ 6,600 more rows
+# ℹ 67 more variables: polity2 &lt;dbl&gt;, gdpen &lt;dbl&gt;, gdptype &lt;dbl&gt;,
+#   gdpenl &lt;dbl&gt;, lgdpenl1 &lt;dbl&gt;, lpopl1 &lt;dbl&gt;, western &lt;dbl&gt;,
+#   eeurop &lt;dbl&gt;, lamerica &lt;dbl&gt;, ssafrica &lt;dbl&gt;, asia &lt;dbl&gt;,
+#   nafrme &lt;dbl&gt;, colbrit &lt;dbl&gt;, colfra &lt;dbl&gt;, mtnest &lt;dbl&gt;,
+#   lmtnest &lt;dbl&gt;, elevdiff &lt;dbl&gt;, Oil &lt;dbl&gt;, ncontig &lt;dbl&gt;,
+#   ethfrac &lt;dbl&gt;, ef &lt;dbl&gt;, plural &lt;dbl&gt;, second &lt;dbl&gt;, …</code></pre>
+</div>
+<p>Research Thoughts
+-GDP - Y variable</p>
+<p>colonized- 0/1 ur explanatory variable your X</p>
+<p>LM function/ give you regression table</p>
+<p>How much do former british and french colonies have civil wars . I am using the civil war data set.
+If we can deduce that colonies are more unstable, have worse economies or less functional governments it may follow that they are susceptible to civil wars.
+Some of the variables that can be used are the GDP ( “gdp/pop based on pwt5.6, wdi2001,cow energy data”) as well as polity score which measures index of democratization. The outcome variable would be war and onset to see if and when a civil war broke out in those nations. If the data displayed that former colonies with lower the democratization and gdp had more civil wars than that would give credence to my theory however data that shows that either colonies don’t have more wars or if they do they don’t have lower democratization and gdp than it wouldn’t disprove but I would need more data around other facets that can be attributed to a history of colonization.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
