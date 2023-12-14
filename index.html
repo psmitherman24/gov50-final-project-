@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-5-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1517,12 +1517,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h2 id="project-thoughts">Project thoughts</h2>
-<p>I am interested in exploring data related to Civil Wars.</p>
+<h2 id="final-report">Final Report</h2>
+<p>Introduction:
+My initial interest in this topic was peaked simply by seeing the data set Civil War. Civil Wars and general governmental problems of course can be caused by a variety of reasons however I was intrigued on the relation with if that country was a former colony. In today’s society we see that many third world countries have not recovered from colonization entirely and many have been war stricken ever since foreign intervention.</p>
+<p>The research question is what is the level of democratization for countries that were formally colonized by Britain and France and my Hypothesis is that their levels will be lower. This is interesting because it is well known that many countries that have been impacted by colonial oppression have struggled in various ways such as war torn nations, falling into Authoritarian regimes and economic success or lack thereof. This data may point to if that has statistical backing or not.</p>
+<p>Data Set:
+The data source was from the Civil War data provided to us and the dependent variable, Polity score which was measured on scale ranging from -10 (hereditary monarchy) to +10 (consolidated democracy) in the form of a survey. The independent variable was Colonized or Not by Britain or France
+Results:</p>
+<p>My Results demonstrated that the polity or Democratization levels of countries colonized by Britain were the highest with a average polity of 1.0021277, followed by countries that were not colonized at 0.2722425 while the lowest polity score were countries that were colonized by France with an average of -5.0344203. In the case of France there is support for my theory with an extremely low democratization level. I believe that a threat to my analysis is that these formerly colonized countries does not exclude countries such as the United States and Canada which have had much more success than many of the countries in places like the Caribbean , Africa or East Asia. This would be a way to improve this data set to differentiate between colonies that are already thriving.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/tidymodels/infer'>infer</a></span><span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>civilwar</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"~/Downloads/civilwar.csv"</span><span class='op'>)</span></span>
 <span></span>
@@ -1548,15 +1555,111 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 #   nafrme &lt;dbl&gt;, colbrit &lt;dbl&gt;, colfra &lt;dbl&gt;, mtnest &lt;dbl&gt;,
 #   lmtnest &lt;dbl&gt;, elevdiff &lt;dbl&gt;, Oil &lt;dbl&gt;, ncontig &lt;dbl&gt;,
 #   ethfrac &lt;dbl&gt;, ef &lt;dbl&gt;, plural &lt;dbl&gt;, second &lt;dbl&gt;, …</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://tibble.tidyverse.org/reference/view.html'>view</a></span><span class='op'>(</span><span class='va'>civilwar</span><span class='op'>)</span></span></code></pre>
 </div>
-<p>Research Thoughts
--GDP - Y variable</p>
-<p>colonized- 0/1 ur explanatory variable your X</p>
-<p>LM function/ give you regression table</p>
-<p>How much do former british and french colonies have civil wars . I am using the civil war data set.
-If we can deduce that colonies are more unstable, have worse economies or less functional governments it may follow that they are susceptible to civil wars.
-Some of the variables that can be used are the GDP ( “gdp/pop based on pwt5.6, wdi2001,cow energy data”) as well as polity score which measures index of democratization. The outcome variable would be war and onset to see if and when a civil war broke out in those nations. If the data displayed that former colonies with lower the democratization and gdp had more civil wars than that would give credence to my theory however data that shows that either colonies don’t have more wars or if they do they don’t have lower democratization and gdp than it wouldn’t disprove but I would need more data around other facets that can be attributed to a history of colonization.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>civilwar2</span> <span class='op'>&lt;-</span> <span class='va'>civilwar</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>`Colonized` <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span><span class='va'>colbrit</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"Colonized by Britain"</span>,</span>
+<span>                                 <span class='va'>colfra</span> <span class='op'>==</span> <span class='fl'>1</span> <span class='op'>~</span> <span class='st'>"Colonized by France"</span>,</span>
+<span>                                 <span class='va'>colbrit</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>|</span> <span class='va'>colfra</span> <span class='op'>==</span> <span class='fl'>0</span> <span class='op'>~</span> <span class='st'>"Neither"</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>civilwar2</span></span></code></pre>
+</div>
+<pre><code># A tibble: 6,610 × 78
+   ccode country cname cmark  year   war  warl onset    pop  lpop
+   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;
+ 1     2 USA     USA       1  1945     0     0     0 140969  11.9
+ 2     2 USA     USA       0  1946     0     0     0 141936  11.9
+ 3     2 USA     USA       0  1947     0     0     0 142713  11.9
+ 4     2 USA     USA       0  1948     0     0     0 145326  11.9
+ 5     2 USA     USA       0  1949     0     0     0 147987  11.9
+ 6     2 USA     USA       0  1950     0     0     0 152273  11.9
+ 7     2 USA     USA       0  1951     0     0     0 155000  12.0
+ 8     2 USA     USA       0  1952     0     0     0 157727  12.0
+ 9     2 USA     USA       0  1953     0     0     0 160475  12.0
+10     2 USA     USA       0  1954     0     0     0 163202  12.0
+# ℹ 6,600 more rows
+# ℹ 68 more variables: polity2 &lt;dbl&gt;, gdpen &lt;dbl&gt;, gdptype &lt;dbl&gt;,
+#   gdpenl &lt;dbl&gt;, lgdpenl1 &lt;dbl&gt;, lpopl1 &lt;dbl&gt;, western &lt;dbl&gt;,
+#   eeurop &lt;dbl&gt;, lamerica &lt;dbl&gt;, ssafrica &lt;dbl&gt;, asia &lt;dbl&gt;,
+#   nafrme &lt;dbl&gt;, colbrit &lt;dbl&gt;, colfra &lt;dbl&gt;, mtnest &lt;dbl&gt;,
+#   lmtnest &lt;dbl&gt;, elevdiff &lt;dbl&gt;, Oil &lt;dbl&gt;, ncontig &lt;dbl&gt;,
+#   ethfrac &lt;dbl&gt;, ef &lt;dbl&gt;, plural &lt;dbl&gt;, second &lt;dbl&gt;, …</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>civilwartibble</span> <span class='op'>&lt;-</span> <span class='va'>civilwar2</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>`Colonized`</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarize</a></span><span class='op'>(</span>`Average Polity Score` <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>polity2</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>civilwartibble</span> <span class='op'>|&gt;</span> <span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
+</div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Colonized</th>
+<th style="text-align: right;">Average Polity Score</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Colonized by Britain</td>
+<td style="text-align: right;">1.0021277</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Colonized by France</td>
+<td style="text-align: right;">-5.0344203</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Neither</td>
+<td style="text-align: right;">0.2722425</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>civilwartibble</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>civilwartibble</span>, mapping <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>`Colonized`</span>, y <span class='op'>=</span> <span class='va'>`Average Polity Score`</span>, fill <span class='op'>=</span> <span class='va'>`Colonized`</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_bar</a></span><span class='op'>(</span>stat <span class='op'>=</span> <span class='st'>"identity"</span><span class='op'>)</span> <span class='op'>+</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_cartesian.html'>coord_cartesian</a></span><span class='op'>(</span>ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>5</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>ggtitle</a></span><span class='op'>(</span> <span class='st'>"Polity score of Colonized and Non Colonized Nations"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>text<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>family <span class='op'>=</span> <span class='st'>"Georgia"</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-5-1.png" width="624" /></p>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>polity2</span> <span class='op'>~</span> <span class='va'>colbrit</span> <span class='op'>+</span> <span class='va'>colfra</span>, data <span class='op'>=</span> <span class='va'>civilwar2</span><span class='op'>)</span><span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = polity2 ~ colbrit + colfra, data = civilwar2)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-11.002  -7.272  -1.272   7.728  14.034 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   0.2722     0.1210   2.249 0.024544 *  
+colbrit       0.7299     0.2060   3.544 0.000397 ***
+colfra       -5.3067     0.2489 -21.322  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 7.226 on 6544 degrees of freedom
+  (63 observations deleted due to missingness)
+Multiple R-squared:  0.07828,   Adjusted R-squared:  0.078 
+F-statistic: 277.9 on 2 and 6544 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
