@@ -8,36 +8,43 @@ output:
 ---
 ## Final Report
 
+```{r}
+library(tidyverse)
+library(dplyr)
+library(infer)
+library(ggplot2)
+
+civilwar <- read_csv("~/Downloads/civilwar.csv")
+
+```
+
+
 Introduction:
 My initial interest in this topic was peaked simply by seeing the data set Civil War. Civil Wars and general governmental problems of course can be caused by a variety of reasons however I was intrigued on the relation with if that country was a former colony. In today's society we see that many third world countries have not recovered from colonization entirely and many have been war stricken ever since foreign intervention. 
 
 The research question is what is the level of democratization for countries that were formally colonized by Britain and France and my Hypothesis is that their levels will be lower. This is interesting because it is well known that many countries that have been impacted by colonial oppression have struggled in various ways such as war torn nations, falling into Authoritarian regimes and economic success or lack thereof. This data may point to if that has statistical backing or not.
 
 Data Set:
-The data source was from the Civil War data provided to us and the dependent variable,  Polity score which was measured  on scale ranging from -10 (hereditary monarchy) to +10 (consolidated democracy) in the form of a survey. The  independent variable was Colonized or Not by Britain or France
-Results:
-
-My Results demonstrated that the polity or Democratization levels of countries colonized by Britain  were the highest with a  average polity of 1.0021277, followed by countries that were not colonized at 0.2722425 while the lowest polity score were countries that were colonized by France with an average of -5.0344203. In the case of France there is support for my theory with an extremely low democratization level. I believe that a threat to my analysis is that these formerly colonized countries does not exclude countries such as the United States and Canada which have had much more success than many of the countries in places like the Caribbean , Africa or East Asia. This would be a way to improve this data set to differentiate between colonies that are already thriving.
+The data source was from the Civil War data provided to us and the dependent variable,  Polity score which was measured  on scale ranging from -10 (hereditary monarchy) to +10 (consolidated democracy) in the form of a survey. The  independent variable was Colonized or Not by Britain or France. There a large number of countries that fit underneath this umbrella and also there is a wide range in polity so immediately there is no clear relationship between the two.
 
 ```{r}
-library(tidyverse)
-library(dplyr)
-library(infer)
-
-civilwar <- read_csv("~/Downloads/civilwar.csv")
-
-civilwar
-
-view(civilwar)
-
+civilwar |>
+filter(colbrit==1 | colfra==1)|>
+  ggplot(civilwar, mapping = aes(x= year, y = polity2)) +
+  geom_point() +
+  labs( x = "Year", y = "Polity Score", title = "Polity Score of Colonized Countries Throughout The Years")
 ```
+
+
+
+Part 3.
+
 
 ```{r}
 civilwar2 <- civilwar |>
   mutate(`Colonized` = case_when(colbrit == 1 ~ "Colonized by Britain",
                                  colfra == 1 ~ "Colonized by France",
                                  colbrit == 0 | colfra == 0 ~ "Neither"))
-
 civilwar2
 ```
 
@@ -69,11 +76,21 @@ civilwartibble |>
 
 
 ```{r}
-lm(polity2 ~ colbrit + colfra, data = civilwar2)|>
-  summary()
+model <- lm(polity2 ~ colbrit + colfra, data = civilwar2)
 
+var_labels <- c(
+  "(Intercept)" = "Intercept",
+  "colbrit" = "Colonized by Britain", "colfra" = "Colonized by France")
+modelsummary::modelsummary(model,
+                           statistic = c("s.e. = {std.error}",
+                                         "p = {p.value}"),
+                           coef_map = var_labels,
+                           gof_map = c("nobs", "r.squared", "adj.r.squared"))
 ```
 
+Results:
+
+My Results demonstrated that the polity or Democratization levels of countries colonized by Britain  were the highest with a  average polity of 1.0021277, followed by countries that were not colonized at 0.2722425 while the lowest polity score were countries that were colonized by France with an average of -5.0344203. In the case of France there is support for my theory with an extremely low democratization level. I believe that a threat to my analysis is that these formerly colonized countries does not exclude countries such as the United States and Canada which have had much more success than many of the countries in places like the Caribbean , Africa or East Asia. This would be a way to improve this data set to differentiate between colonies that are already thriving.
 
 
 
